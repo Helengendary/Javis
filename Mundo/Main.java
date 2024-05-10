@@ -4,43 +4,14 @@ public class Main {
     
         Mundo mundo = new Mundo();
 
-        mundo.CriarMundo(1, 123);
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
-        mundo.Rodada();
+        Integer colaborativos = 1;
+        Integer trapaceiros = 123;
+        Integer rabugentos = 0;
 
-       
+        mundo.CriarMundo(colaborativos, trapaceiros, rabugentos);
+        
+        while (mundo.Rodada() != 0) {
+            mundo.Rodada();
+        } 
     }
 }
