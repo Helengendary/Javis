@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
 
     public ArrayList<Integer> Aleatorio(int tam) {
-        ArrayList<Integer> lista  = new ArrayList<>;
+        ArrayList<Integer> lista  = new ArrayList<>();
         Random rand = new Random();
 
         for (int i = 0; i < tam; i++) {
