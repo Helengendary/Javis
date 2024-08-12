@@ -17,7 +17,12 @@ public class Pet {
     }
 
     public void ColocarComida(){
-        this.Comida = true;
+        if (this.Comida == true){
+            System.out.println("Já tem comida");
+        } else {
+            this.Comida = true;
+            System.out.println("Pote cheio!");
+        }
     }
 
     public void EmitirSom (String som){
