@@ -10,18 +10,12 @@ public class Escrita {
     public String Material;
     public Float Espessura;
     public String Cor;
-    public Float Tamanho;
     public String Note = "";
 
     public void escrever(String texto){
         System.out.println("Escrevendo...");
         Note += texto + "\n";
         System.out.println("Notas: " + Note);
-    }
-
-    public void setTamanho(Float tamanho) {
-        Tamanho = tamanho;
-        System.out.println("Tamanho: " + tamanho);
     }
 
     public void setMarca(String marca) {
