@@ -8,7 +8,7 @@ public class Main {
 
         System.out.println("\nCachorro\n");
 
-        cachorro.EmitirSom("Au au au");
+        cachorro.EmitirSom("Au au au!");
         cachorro.Comer();
         cachorro.Brincar();
         cachorro.ColocarComida();
@@ -16,7 +16,7 @@ public class Main {
 
         System.out.println("\nGato\n");
 
-        gato.EmitirSom("Au au au");
+        gato.EmitirSom("Miaw miaw!");
         gato.Comer();
         gato.Brincar();
         gato.ColocarComida();
@@ -24,7 +24,7 @@ public class Main {
 
         System.out.println("\nPorco\n");
 
-        porco.EmitirSom("Au au au");
+        porco.EmitirSom("Ronc Ronc!");
         porco.Comer();
         porco.Brincar();
         porco.ColocarComida();
