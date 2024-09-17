@@ -1,0 +1,25 @@
+SHOPEE
+
+Perspectiva usuário
+Perspectiva do Dono da Loja
+
+
+OBJETOS:
+ - Tipo Usuário
+    - Administrador da Loja (Registrar e Alterar Produto, Saber quantidade de vendas)
+    - Usuário (Saber quais lojas vendem quais produtos, Colocar no Carrinho)
+ - Usuário 
+    - Nome
+    - CPF
+    - CEP
+    - Numero
+    - Carrinho
+ - Produtos
+    - Nome
+    - Loja
+    - Preço
+    - Quantidade
+ - Lojas
+    - Nome
+    - Produtos
+    - Total de vendas
