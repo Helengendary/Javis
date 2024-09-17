@@ -17,18 +17,18 @@ public class Cliente extends User {
         }
     }
 
-    public void Comprar(ArrayList<Loja> Lojas) {
-        for (Loja loja : Lojas) {
-            for (Produto produto : Carrinho) {
-                // if (condition) {
+    // public void Comprar(ArrayList<Loja> Lojas) {
+    //     for (Loja loja : Lojas) {
+    //         for (Produto produto : Carrinho) {
+    //             if (condition) {
                     
-                // }
-                // loja.venderProduto(produto);
-            }
-        }
+    //             }
+    //             loja.venderProduto(produto);
+    //         }
+    //     }
 
 
-        Carrinho.clear();
-        System.out.println("Compras feitas e carrinho vazio!! :)");
-    }
+    //     Carrinho.clear();
+    //     System.out.println("Compras feitas e carrinho vazio!! :)");
+    // }
 }
