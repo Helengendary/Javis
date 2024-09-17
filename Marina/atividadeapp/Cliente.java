@@ -7,7 +7,11 @@ public class Cliente extends User {
     private ArrayList<Produto> Carrinho;
 
     public void AdicionarCarrinho(Produto prod) {
-        Carrinho.add(prod);
+        if (prod.Quantidade > 0) {
+            Carrinho.add(prod);
+        } else {
+            System.out.println("Produto Indisponivel");
+        }
     }  
 
     public void VerCatalogo(ArrayList<Loja> Lojas) {
@@ -17,18 +21,15 @@ public class Cliente extends User {
         }
     }
 
-    // public void Comprar(ArrayList<Loja> Lojas) {
-    //     for (Loja loja : Lojas) {
-    //         for (Produto produto : Carrinho) {
-    //             if (condition) {
-                    
-    //             }
-    //             loja.venderProduto(produto);
-    //         }
-    //     }
+    public void Comprar(ArrayList<Loja> Lojas) {
+        for (Loja loja : Lojas) {
+            for (Produto produto : Carrinho) {
+                loja.venderProduto(produto);
+            }
+        }
 
 
-    //     Carrinho.clear();
-    //     System.out.println("Compras feitas e carrinho vazio!! :)");
-    // }
+        Carrinho.clear();
+        System.out.println("Compras feitas e carrinho vazio!! :)");
+    }
 }

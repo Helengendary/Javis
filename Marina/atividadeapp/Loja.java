@@ -18,12 +18,12 @@ public class Loja {
     }
 
     public void venderProduto(Produto oldProduto) {
-        
         if (oldProduto.Quantidade == 0) {
             System.out.println("Produto Indisponível");
             return;
         }
 
         oldProduto.Quantidade--;
+        TotalVendas++;
     }
 }
