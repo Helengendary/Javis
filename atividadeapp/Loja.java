@@ -6,8 +6,9 @@ public class Loja {
     public Integer TotalVendas;
 
     public Loja(String nome) {
-        Nome = nome;
-        TotalVendas = 0;
+        this.Nome = nome;
+        this.TotalVendas = 0;
+        this.Produtos = null;
     }
 
     public void MostrarProdutos() {

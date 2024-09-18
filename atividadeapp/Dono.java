@@ -10,12 +10,12 @@ public class Dono extends User{
     public void novoProduto(String nome, Float preco, Integer quantidade) {
         Produto produto = new Produto(nome, preco, quantidade, this.Loja);
         System.out.println("Produto registrado com sucesso!");
-        Loja.Produtos.add(produto); 
+        this.Loja.Produtos.add(produto);
     }
 
     public void retirarProduto(Produto produto) {
         System.out.println("Produto retirado com sucesso");
-        Loja.Produtos.remove(produto);
+        this.Loja.Produtos.remove(produto);
     }
 
     public Integer TotalVendasLoja() {
