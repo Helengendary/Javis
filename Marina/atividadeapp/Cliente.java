@@ -1,23 +1,27 @@
 import java.util.ArrayList;
 
 public class Cliente extends User {
+    private ArrayList<Produto> Carrinho;
     public Cliente (String nome, String cpf, String cep, Integer numero) {
         super(nome, cpf, cep, numero);
+        Carrinho = new ArrayList<>();
     }
-    private ArrayList<Produto> Carrinho;
+
+    
 
     public void AdicionarCarrinho(Produto prod) {
         if (prod.Quantidade > 0) {
             Carrinho.add(prod);
+            System.out.println("Produto adicionado ao carrinho!");
         } else {
             System.out.println("Produto Indisponivel");
         }
     }  
 
     public void VerCatalogo(ArrayList<Loja> Lojas) {
-        for (Loja loja : Lojas) {
-            System.out.println(loja.Nome);
-            loja.MostrarProdutos();
+        for (int i = 0; i < Lojas.size(); i++) {
+            System.out.println(i + " - " + Lojas.get(i).Nome);
+            Lojas.get(i).MostrarProdutos();
         }
     }
 
@@ -28,8 +32,16 @@ public class Cliente extends User {
             }
         }
 
-
         Carrinho.clear();
         System.out.println("Compras feitas e carrinho vazio!! :)");
+    }
+    public void EsvaziarCarrinho() {
+
+        Carrinho.clear();
+        System.out.println("Carrinho vazio!! :)");
+    }
+
+    public ArrayList<Produto> getCarrinho() {
+        return Carrinho;
     }
 }

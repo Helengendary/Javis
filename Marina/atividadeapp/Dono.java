@@ -1,18 +1,21 @@
 public class Dono extends User{
 
-    public Dono (String nome, String cpf, String cep, Integer numero) {
-        super(nome, cpf, cep, numero);
-    }
     private Loja Loja;
 
-    public void novoProduto(String nome, Float preco, Integer quantidade) {
+    public Dono (String nome, String cpf, String cep, Integer numero, Loja loja) {
+        super(nome, cpf, cep, numero);
+        this.Loja = loja;
+    }
+
+    public void novoProduto(String nome, Float preco, Integer quantidade, Loja loja) {
         Produto produto = new Produto(nome, preco, quantidade, this.Loja);
-        Loja.Produtos.add(produto); 
+        loja.Produtos.add(produto);
+        System.out.println("Produto registrado com sucesso!");
     }
 
     public void retirarProduto(Produto produto) {
         System.out.println("Produto retirado com sucesso");
-        Loja.Produtos.remove(produto);
+        this.Loja.Produtos.remove(produto);
     }
 
     public Integer TotalVendasLoja() {
