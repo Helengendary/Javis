@@ -1,23 +1,32 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.naming.CompoundName;
+
 public class Conjunto {
 
-    private ArrayList<Object> conteudo = new ArrayList<>();
+    private ArrayList<Object> conteudo = null;
     private static ArrayList<ArrayList<Object>> listaIntersecao = new ArrayList<>();
+    private static ArrayList<ArrayList<Object>> listaUniao = new ArrayList<>();
 
     Scanner scan = new Scanner(System.in);
  
+    // Geters e Setters
     public ArrayList<Object> getConteudo() {
         return conteudo;
     }
 
-    // Geters e Setters
     public void setConteudo(ArrayList<Object> conteudo) {
         this.conteudo = conteudo;
     }
 
+    // Função essencial, porém não obrigatória
     public void add(Object valor) {
+
+        if (conteudo == null) {
+            conteudo = new ArrayList<>();
+        }
+
         conteudo.add(valor);
     }
 
@@ -51,27 +60,36 @@ public class Conjunto {
 
     // Função C
     public boolean ehSubconjunto(ArrayList<Object> outro) {
-        boolean tahDentro = false;
-        int index = 0;
 
-        // Verifica repetição
-        ArrayList<Integer> comparados = criarComparador(conteudo.size());
+        if (outro == null) {
+            return false;
+        }
+
+        if (conteudo == null) {
+
+
+            boolean tahDentro = false;
+            int index = 0;
+
+            // Verifica repetição
+            ArrayList<Integer> comparados = criarComparador(conteudo.size());
  
-        for (Object outrosObject : outro) {
-            for (Object originalObject : conteudo) {
-                if (outrosObject == originalObject && comparados.get(index) == 0) {
-                    comparados.set(index, 1);
-                    tahDentro = true;
+            for (Object outrosObject : outro) {
+                for (Object originalObject : conteudo) {
+                    if (outrosObject == originalObject && comparados.get(index) == 0) {
+                        comparados.set(index, 1);
+                        tahDentro = true;
+                    }
+                    index++;
                 }
-                index++;
+    
+                if (!tahDentro) {
+                    return false;
+                }
+    
+                tahDentro = false;
+                index = 0;
             }
-
-            if (!tahDentro) {
-                return false;
-            }
-
-            tahDentro = false;
-            index = 0;
         }
 
         return true;
@@ -79,6 +97,54 @@ public class Conjunto {
 
 
 
+    // Para conseguir fazer a interseção de mais de dois conjuntos
+    public static void addUniao(Conjunto Conjuntinho) {
+        listaUniao.add(Conjuntinho.getConteudo());
+    }
+
+    public static void zerarUniao() {
+        listaUniao.clear();
+    }
+
+    public static void verUniao() {
+        System.out.print(listaUniao);
+    }
+    
+    
+    
+    // Fazer a interseção
+    public static ArrayList<Object> uniao() {
+        
+        boolean tahlahjah = true;
+        
+        ArrayList<Object> conjunto = new ArrayList<>();
+        
+        for (int i = 0; i < listaUniao.size(); i++) {
+            
+            for (int j = 0; listaUniao.get(i) != null && j < listaUniao.get(i).size(); j++) {
+                
+                tahlahjah = false;
+                
+                for (int j2 = 0; j2 < conjunto.size(); j2++) {  
+                    
+                    if (listaUniao.get(i).get(j) == conjunto.get(j2)) {
+                        tahlahjah = true;
+                    }
+                    
+                }
+                
+                if (!tahlahjah) {
+                    conjunto.add(listaUniao.get(i).get(j));
+                }
+            }
+        }
+        
+        return conjunto ;
+    }
+    
+
+    
+    
     // Para conseguir fazer a interseção de mais de dois conjuntos
     public static void addIntersecao(Conjunto Conjuntinho) {
         listaIntersecao.add(Conjuntinho.getConteudo());
@@ -94,43 +160,35 @@ public class Conjunto {
 
 
 
-    // Fazer a interseção
+
+    // Fazer a união
     public static ArrayList<Object> intersecao() {
-
-        boolean tahlahjah = true;
-
-        ArrayList<ArrayList<Integer>> COMPARAR = new ArrayList<>();
-
+        
         ArrayList<Object> conjunto = new ArrayList<>();
-
-        for (int i = 0; i < listaIntersecao.size(); i++) {
+        
+        ArrayList<ArrayList<Integer>> COMPARAR = new ArrayList<>();
+        
+        for (int i = 0; listaIntersecao.get(i) != null && i < listaIntersecao.size(); i++) {
             COMPARAR.add(criarComparador(listaIntersecao.get(i).size()));
         }
-
+        
         for (int i = 0; i < listaIntersecao.size(); i++) {
-
-            System.out.println(listaIntersecao.get(i));
-
-            for (int j = 0; j < listaIntersecao.get(i).size(); j++) {
-
+            for (int j = 0; listaIntersecao.get(i) != null &&j < listaIntersecao.get(i).size(); j++) {
                 
-                if (conjunto.size() == 0 || !tahlahjah) {
-                    conjunto.add(listaIntersecao.get(i).get(j));
-                    System.out.println(tahlahjah);
-                }
+                COMPARAR.get(i).set(j, 1);
                 
-                tahlahjah = false;
-                
-                for (int j2 = 0; j2 < conjunto.size(); j2++) {  
-                    if (listaIntersecao.get(i).get(j) == conjunto.get(j2) && j2 != 0) {
-                        tahlahjah = true;
+                for (int j2 = 0; j2 < listaIntersecao.size(); j2++) {   
+                    if (j2 != j) {
+                        for (int k = 0; listaIntersecao.get(j2) != null && k < listaIntersecao.get(j2).size(); k++) {
+                            if (listaIntersecao.get(i).get(j) == listaIntersecao.get(j2).get(k) && COMPARAR.get(j2).get(k) == 0) {
+                                conjunto.add(listaIntersecao.get(i).get(j));
+                            }
+                        }                    
                     }
                 }
-                
-                System.out.println("2" + tahlahjah);
             }
         }
-
+        
         return conjunto ;
     }
 }

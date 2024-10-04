@@ -7,6 +7,15 @@ public class Main {
 
         Conjunto ribeiris = new Conjunto();
         
+        Conjunto juan = new Conjunto();
+
+        Conjunto igual = new Conjunto();
+        
+        Conjunto igualigual = new Conjunto();
+
+        Conjunto teste = new Conjunto();
+        
+        Conjunto testeteste = new Conjunto();
         
         helena.add(21);
         helena.add(12);
@@ -18,7 +27,21 @@ public class Main {
         ribeiris.add(11);
         ribeiris.add(112);
         ribeiris.add(13);
+        ribeiris.add(ribeiris);
         
+        igual.add(1);
+        igualigual.add(1); 
+
+
+        teste.add(igual);
+        testeteste.add(igualigual);
+        testeteste.add(igual);
+
+
+        System.out.println("cont igual: " + igualigual.getConteudo());
+        System.out.println("cont teste: " + testeteste.getConteudo());
+        System.out.println("teste " + testeteste.ehSubconjunto(igualigual.getConteudo()));
+
         // System.out.println(ribeiris.getConteudo());
         
         // System.out.println(helena.getConteudo());
@@ -29,7 +52,19 @@ public class Main {
 
         Conjunto.addIntersecao(ribeiris);
         Conjunto.addIntersecao(helena);
+        Conjunto.addIntersecao(juan);
         System.out.println(Conjunto.intersecao());
+
+        Conjunto.addUniao(ribeiris);
+        Conjunto.addUniao(helena);
+        Conjunto.addUniao(juan);
+        System.out.println(Conjunto.uniao());
+
+
+        System.out.println("helena C juan: " + helena.ehSubconjunto(juan.getConteudo()));
+        System.out.println("Conteúdo do Juan: " + juan.getConteudo());
+        
+        System.out.println("11 e helena: " + helena.pertence(11));
         
         // Conjunto dois = new Conjunto();
         // Conjunto doisdois = new Conjunto();
