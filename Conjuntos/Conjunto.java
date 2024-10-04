@@ -3,14 +3,16 @@ import java.util.Scanner;
 
 public class Conjunto {
 
-    Scanner scan = new Scanner(System.in);
-
     private ArrayList<Object> conteudo = new ArrayList<>();
+    private static ArrayList<ArrayList<Object>> listaIntersecao = new ArrayList<>();
 
+    Scanner scan = new Scanner(System.in);
+ 
     public ArrayList<Object> getConteudo() {
         return conteudo;
     }
 
+    // Geters e Setters
     public void setConteudo(ArrayList<Object> conteudo) {
         this.conteudo = conteudo;
     }
@@ -19,6 +21,22 @@ public class Conjunto {
         conteudo.add(valor);
     }
 
+
+    // Para facilitar a comparação
+    public static ArrayList<Integer> criarComparador(int tamanho) {
+
+        ArrayList<Integer> listaNumerica = new ArrayList<>(); 
+
+        for (int i = 0; i < tamanho; i++) {
+            listaNumerica.add(0);
+        }
+
+        return listaNumerica;
+    }
+
+
+
+    // Função E 
     public boolean pertence(Object outro) {
         
         for (Object object : conteudo) {
@@ -30,15 +48,14 @@ public class Conjunto {
         return false;
     }
 
+
+    // Função C
     public boolean ehSubconjunto(ArrayList<Object> outro) {
         boolean tahDentro = false;
         int index = 0;
 
-        ArrayList<Integer> comparados = new ArrayList<>();
-
-        for (int i = 0; i < conteudo.size(); i++) {
-            comparados.add(0);
-        }
+        // Verifica repetição
+        ArrayList<Integer> comparados = criarComparador(conteudo.size());
  
         for (Object outrosObject : outro) {
             for (Object originalObject : conteudo) {
@@ -60,23 +77,60 @@ public class Conjunto {
         return true;
     }
 
-    public static ArrayList<Object> intersecao(ArrayList<ArrayList<Object>> objetosIntersecao) {
-        boolean tahDentro = false; 
-        int index = 0;
 
-        ArrayList<Integer> reciclavel = new ArrayList<>();
+
+    // Para conseguir fazer a interseção de mais de dois conjuntos
+    public static void addIntersecao(Conjunto Conjuntinho) {
+        listaIntersecao.add(Conjuntinho.getConteudo());
+    }
+
+    public static void zerarIntersecao() {
+        listaIntersecao.clear();
+    }
+
+    public static void verIntersecao() {
+        System.out.print(listaIntersecao);
+    }
+
+
+
+    // Fazer a interseção
+    public static ArrayList<Object> intersecao() {
+
+        boolean tahlahjah = true;
 
         ArrayList<ArrayList<Integer>> COMPARAR = new ArrayList<>();
 
-        for (int i = 0; i < objetosIntersecao.size(); i++) {
-            COMPARAR.add(reciclavel);
-            for (Object object : objetosIntersecao.get(i)) {
-                COMPARAR.get(i).add(0);
+        ArrayList<Object> conjunto = new ArrayList<>();
+
+        for (int i = 0; i < listaIntersecao.size(); i++) {
+            COMPARAR.add(criarComparador(listaIntersecao.get(i).size()));
+        }
+
+        for (int i = 0; i < listaIntersecao.size(); i++) {
+
+            System.out.println(listaIntersecao.get(i));
+
+            for (int j = 0; j < listaIntersecao.get(i).size(); j++) {
+
+                
+                if (conjunto.size() == 0 || !tahlahjah) {
+                    conjunto.add(listaIntersecao.get(i).get(j));
+                    System.out.println(tahlahjah);
+                }
+                
+                tahlahjah = false;
+                
+                for (int j2 = 0; j2 < conjunto.size(); j2++) {  
+                    if (listaIntersecao.get(i).get(j) == conjunto.get(j2) && j2 != 0) {
+                        tahlahjah = true;
+                    }
+                }
+                
+                System.out.println("2" + tahlahjah);
             }
         }
 
-        for (ArrayList<Integer> arrayList : COMPARAR) {
-            System.out.println(arrayList);
-        }
+        return conjunto ;
     }
 }

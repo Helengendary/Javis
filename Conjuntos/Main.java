@@ -1,11 +1,7 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 public class Main {
     
     public static void main(String[] args) {
-        
-        ArrayList<ArrayList<Object>> usoIntersecao = new ArrayList<>();
 
         Conjunto helena = new Conjunto();
 
@@ -15,6 +11,7 @@ public class Main {
         helena.add(21);
         helena.add(12);
         helena.add(4);
+        helena.add(11);
         helena.add(3);
         helena.add(ribeiris);
         
@@ -22,17 +19,17 @@ public class Main {
         ribeiris.add(112);
         ribeiris.add(13);
         
-        System.out.println(ribeiris.getConteudo());
+        // System.out.println(ribeiris.getConteudo());
         
-        System.out.println(helena.getConteudo());
+        // System.out.println(helena.getConteudo());
         
-        System.out.println(helena.pertence(ribeiris));
-        System.out.println(helena.ehSubconjunto(ribeiris.getConteudo()));
+        // System.out.println(helena.pertence(3));
+        // System.out.println(helena.ehSubconjunto(ribeiris.getConteudo()));
 
-        usoIntersecao.add(helena);
-        usoIntersecao.add(ribeiris);
 
-        Conjunto.intersecao(usoIntersecao);
+        Conjunto.addIntersecao(ribeiris);
+        Conjunto.addIntersecao(helena);
+        System.out.println(Conjunto.intersecao());
         
         // Conjunto dois = new Conjunto();
         // Conjunto doisdois = new Conjunto();
@@ -44,7 +41,6 @@ public class Main {
         // System.out.println(dois.getConteudo());
         // System.out.println(doisdois.getConteudo());
         // System.out.println(dois.ehSubconjunto(doisdois.getConteudo()));
-
     }
 
 
