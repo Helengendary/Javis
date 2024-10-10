@@ -1,0 +1,183 @@
+package com.desktopapp;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Arc;
+
+import javafx.stage.Stage;
+
+public class MainController {
+    
+
+    public static Scene CreateScene(Integer id) throws Exception{
+
+        FXMLLoader loader = new FXMLLoader(MainController.class.getResource("mainScreen.fxml"));
+        Parent root = loader.load();
+        
+        MainController controller = loader.getController();
+        controller.setId(id);
+        controller.btOther.setText(id.toString());
+        
+        controller.btOther.setPrefHeight(id*(controller.btOther.getPrefHeight()+5));
+        controller.btOther.setPrefWidth(id*(controller.btOther.getPrefWidth()+10));
+        
+
+        controller.timer.scheduleAtFixedRate(new TimerTask()
+        {
+            public void run()
+            {
+                if (controller.start) {
+                    
+                    switch (controller.atualDirection) {
+                        case "A":
+                            
+                            controller.pacMan.setStartAngle(-135);
+                            
+                            controller.pacMan.setStartAngle(180);
+                            controller.pacMan.setLength(360);
+            
+                            try {
+                                Thread.sleep(200);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            
+                            controller.pacMan.setStartAngle(-135);
+                            controller.pacMan.setLength(270);
+                            break;
+                            
+                        case "D":
+                            
+                            controller.pacMan.setStartAngle(45);
+                            
+                            controller.pacMan.setStartAngle(0);
+                            controller.pacMan.setLength(360);
+                     
+                            try {
+                                Thread.sleep(200);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            
+                            controller.pacMan.setStartAngle(45);
+                            controller.pacMan.setLength(270);
+                            
+                            break;
+    
+                        default:
+                            break;
+                    }
+                }
+            }
+        
+        }, 1000, 1000);
+        
+        return new Scene(root);
+    }
+
+    private Integer id;
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    Timer timer = new Timer();
+    String atualDirection = "D";
+    Boolean start = false;
+
+    boolean alterName = false;
+
+    @FXML
+    protected Button btMain;
+
+    @FXML
+    protected Button btOther;
+ 
+    @FXML
+    protected Label lbMain;
+ 
+    @FXML
+    protected Arc pacMan;
+ 
+    @FXML
+    protected ColorPicker colorPac;
+
+
+    // TROCAR COR DO PAC
+    @FXML
+    protected void pegarCor() {
+        pacMan.setFill(colorPac.getValue());
+    }
+
+    // VAI SAIR
+    @FXML
+    protected void onButtonClick(MouseEvent e){
+
+        alterName = !alterName;
+        
+        lbMain.setText(alterName ? "cristian" : "helena");
+
+        pacMan.setLayoutX(pacMan.getLayoutX()+10);
+        
+        if(alterName){
+            pacMan.setStartAngle(0);
+            pacMan.setLength(360);
+        } else {
+            pacMan.setStartAngle(45);
+            pacMan.setLength(270);
+        }
+        
+    }
+
+    @FXML
+    protected void submit(MouseEvent e){
+
+    }
+
+    // MUDAO NÚMERO DOS IDS
+    @FXML
+    protected void corinthians(MouseEvent e) throws Exception{
+        
+        Stage crrStage =  (Stage)btOther.getScene().getWindow();
+        Scene otherScene = MainController.CreateScene(this.id+1);
+        
+        crrStage.setScene(otherScene);
+    }
+
+    // FAZ O PAC ANDAR
+    @FXML
+    protected void onKeyPressed(KeyEvent a){
+        
+        alterName = !alterName;
+        
+        
+
+        switch (a.getCode().toString()) {
+            case "D":
+                atualDirection = "D";
+
+                pacMan.setLayoutX(pacMan.getLayoutX()+10);
+                break;
+                            
+            case "A":
+                atualDirection = "A";
+                pacMan.setLayoutX(pacMan.getLayoutX()-10);
+                break;
+
+            default:
+                break;
+        }
+    }
+}
+

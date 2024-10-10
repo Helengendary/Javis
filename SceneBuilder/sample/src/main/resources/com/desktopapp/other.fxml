@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="94.0" prefWidth="358.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button fx:id="start" layoutX="36.0" layoutY="28.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="115.0" style="-fx-background-color: GREEN;" text="START" textFill="WHITE" />
+      <Button layoutX="201.0" layoutY="28.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="115.0" text="NAÃO FUNCIONA" />
+   </children>
+</Pane>
